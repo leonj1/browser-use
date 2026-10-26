@@ -24,7 +24,7 @@ permissions:
 jobs:
   pre_commit_and_tests:
     if: github.event_name == 'push' && github.ref_name == 'main'
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, linux, x64]
     steps:
       - uses: actions/checkout@v4
       - name: Set up Python
@@ -48,7 +48,7 @@ jobs:
 
   tag_pre_release:
     if: github.event_name == 'schedule'
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, linux, x64]
     steps:
       - uses: actions/checkout@v4
       - name: Create pre-release tag
@@ -65,7 +65,7 @@ jobs:
 
   deploy:
     if: github.event_name == 'release'
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, linux, x64]
     steps:
       - uses: actions/checkout@v4
       - name: Set up Python
